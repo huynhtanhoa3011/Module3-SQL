@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+}
+
+#header {
+    background: gold;
+    height: 100px;
+    width: 100%;
+}
+
+#main {
+    background: burlywood;
+    height: 300px;
+    width: 70%;
+    float: left;
+}
+
+#sidebar {
+    background: aqua;
+    height: 300px;
+    width: 30%;
+    float: left;
+}
+
+#footer {
+    background: violet;
+    height: 100px;
+    width: 100%;
+    clear: both;
+}
