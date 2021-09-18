@@ -1,0 +1,15 @@
+.dictionary {
+    height: 100px;
+    width: 190px;
+    padding: 10px;
+    margin: 0;
+    background-color: palegoldenrod;
+    border: 1px solid blue;
+    text-align: center;
+}
+
+.dictionary input {
+    padding: 5px;
+    margin: 5px;
+}
+
