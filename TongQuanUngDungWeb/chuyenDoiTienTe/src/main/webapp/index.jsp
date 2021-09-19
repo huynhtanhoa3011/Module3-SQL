@@ -7,7 +7,7 @@
   </head>
   <body>
   <h2>Currency Converter</h2>
-  <form>
+  <form action="/convert" method="post">
     <div class="currency">
       <label>Rate:</label>
       <br/>
