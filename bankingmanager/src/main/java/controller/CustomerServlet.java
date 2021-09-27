@@ -46,12 +46,16 @@ public class CustomerServlet extends HttpServlet {
                 case "withdraws":
                     doWithdraw(req, resp);
                     break;
+                case "transfers":
+                    doTransfer(req, resp);
+                    break;
 
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
+
 
 
 
@@ -81,6 +85,9 @@ public class CustomerServlet extends HttpServlet {
                 case "withdraws":
                     formWithdraws(req, resp);
                     break;
+                case "transfers":
+                    formTransfers(req, resp);
+                    break;
                 default:
                     listCustomer(req, resp);
                     break;
@@ -89,6 +96,7 @@ public class CustomerServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+
 
     private void listCustomer(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         List<Customer> listCustomer = customerService.selectAllCustomers();
@@ -146,6 +154,20 @@ public class CustomerServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+    private void doTransfer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException{
+        int depoId = Integer.parseInt(req.getParameter("depoId"));
+        Double balance = Double.parseDouble(req.getParameter("balance"));
+        int withId = Integer.parseInt(req.getParameter("withId"));
+        RequestDispatcher dispatcher = req.getRequestDispatcher("customer/transfer.jsp");
+        customerService.transfers(depoId, balance, withId);
+        dispatcher.forward(req, resp);
+    }
+
+    private void formTransfers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("customer/transfer.jsp");
+        requestDispatcher.forward(req, resp);
+    }
+
     private void deleteCustomers(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {
         int id =Integer.parseInt(req.getParameter("id"));
 
@@ -193,7 +215,6 @@ public class CustomerServlet extends HttpServlet {
             req.setAttribute("success","Create Customer successfully");
             showNewForm(req, resp);
         }
-
     }
 
     private void updateCustomers(HttpServletRequest req, HttpServletResponse resp) throws SQLException, IOException, ServletException {

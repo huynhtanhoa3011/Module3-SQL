@@ -176,4 +176,18 @@ public class CustomerServiceImpl implements ICustomerService {
             printSQLException(e);
         }
     }
+
+    public void transfers(int depoId, double balance, int withId) throws SQLException {
+        String TRANSFERS = "call sp_transfer (?,?,?)";
+        try (Connection connection = connection(); PreparedStatement preparedStatement = connection.prepareStatement(TRANSFERS)){
+            System.out.println(preparedStatement);
+            preparedStatement.setInt(1, depoId);
+            preparedStatement.setDouble(2, balance);
+            preparedStatement.setInt(3, withId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
 }

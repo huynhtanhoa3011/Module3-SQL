@@ -21,4 +21,6 @@ public interface ICustomerService {
     public void deposits (int id, double balance) throws SQLException;
 
     public void withdraws (int id, double balance) throws SQLException;
+
+    public void transfers (int depoId, double balance, int withId) throws SQLException;
 }
